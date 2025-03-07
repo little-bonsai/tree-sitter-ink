@@ -1,0 +1,121 @@
+===
+BasicLists
+===
+LIST kettleState = cold, boiling, recently_boiled
+
+---
+
+(file
+  (listDef
+    name: (identifier)
+    values: (identifier)
+    values: (identifier)
+    values: (identifier)))
+
+===
+AssignToListValue
+===
+VAR status = colours.blue
+
+---
+
+(file
+  (variableDef
+    (identifier)
+    (identifierNamespaced
+      (identifier)
+      (identifier))))
+
+===
+DefinedValues
+===
+LIST primeNumbers = two = 2, three = 3, five = 5
+
+---
+
+(file
+  (listDef
+    name: (identifier)
+    values: (identifier)
+    values: (number)
+    values: (identifier)
+    values: (number)
+    values: (identifier)
+    values: (number)))
+
+===
+InitialSet
+===
+LIST primeNumbers = (two = 2), (three) = 3, (five = 5)
+
+---
+
+(file
+  (listDef
+    name: (identifier)
+    initial: (identifier)
+    initial: (number)
+    initial: (identifier)
+    initial: (number)
+    initial: (identifier)
+    initial: (number)))
+
+===
+AssignMultipleValues
+===
+~ DoctorsInSurgery = (Adams, Bernard)
+~ DoctorsInSurgery = (Adams, Bernard, Eamonn)
+~ DoctorsInSurgery = ()
+
+---
+
+(file
+  (statement
+    (identifier)
+    (listSet
+      (identifier)
+      (identifier)))
+  (statement
+    (identifier)
+    (listSet
+      (identifier)
+      (identifier)
+      (identifier)))
+  (statement
+    (identifier)
+    (listSet)))
+
+===
+AddingAndRemoving
+===
+~ DoctorsInSurgery = DoctorsInSurgery + Adams
+~ DoctorsInSurgery += Adams  // this is the same as the above
+~ DoctorsInSurgery -= Eamonn
+~ DoctorsInSurgery += (Eamonn, Denver)
+~ DoctorsInSurgery -= (Adams, Eamonn, Denver)
+
+---
+
+(file
+  (statement
+    (identifier)
+    (identifier)
+    (identifier))
+  (statement
+    (identifier)
+    (identifier)
+    (lineComment))
+  (statement
+    (identifier)
+    (identifier))
+  (statement
+    (identifier)
+    (listSet
+      (identifier)
+      (identifier)))
+  (statement
+    (identifier)
+    (listSet
+      (identifier)
+      (identifier)
+      (identifier))))

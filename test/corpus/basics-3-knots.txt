@@ -1,0 +1,104 @@
+===
+Knot
+===
+=== Foo ===
+some
+text
+here
+
+---
+
+(file
+  (knot
+    (knotHeader
+      name: (identifier))
+    (contentText)
+    (contentText)
+    (contentText)))
+
+===
+Divert
+===
+-> Foo
+
+---
+
+(file
+  (divert
+    to: (path
+      (identifier))))
+
+===
+KnotsTakeParameters
+===
+-> accuse("Hastings")
+
+=== accuse(who) ===
+	"I accuse {who}!" Poirot declared.
+
+---
+
+(file
+  (divert
+    to: (path
+      (identifier)
+      (string
+        (contentText))))
+  (knot
+    (knotHeader
+      name: (identifier)
+      parameter: (identifier))
+    (contentText)
+    (interpolation
+      (identifier))
+    (contentText)))
+
+===
+Functions
+===
+=== function say_yes_to_everything ===
+	~ return true
+
+=== function lerp(a, b, k) ===
+	~ return ((b - a) * k) + a
+
+---
+
+(file
+  (knot
+    (knotHeader
+      name: (identifier))
+    (statement
+      (return
+        (identifier))))
+  (knot
+    (knotHeader
+      name: (identifier)
+      parameter: (identifier)
+      parameter: (identifier)
+      parameter: (identifier))
+    (statement
+      (return
+        (identifier)
+        (identifier)
+        (identifier)
+        (identifier)))))
+
+===
+PassByReference
+===
+=== function alter(ref x, k) ===
+	~ x = x + k
+
+---
+
+(file
+  (knot
+    (knotHeader
+      name: (identifier)
+      parameter: (identifier)
+      parameter: (identifier))
+    (statement
+      (identifier)
+      (identifier)
+      (identifier))))

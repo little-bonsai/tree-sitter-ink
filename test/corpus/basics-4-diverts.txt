@@ -1,0 +1,50 @@
+===
+inline divert
+===
+We hurried home to Savile Row -> as_fast_as_we_could
+
+---
+
+(file
+  (contentText)
+  (divert
+    to: (path
+      (identifier))))
+
+===
+glue
+===
+=== hurry_home ===
+We hurried home <>
+-> to_savile_row
+
+=== to_savile_row ===
+to Savile Row
+-> as_fast_as_we_could
+
+=== as_fast_as_we_could ===
+<> as fast as we could
+
+---
+
+(file
+  (knot
+    (knotHeader
+      name: (identifier))
+    (contentText)
+    (glue)
+    (divert
+      to: (path
+        (identifier))))
+  (knot
+    (knotHeader
+      name: (identifier))
+    (contentText)
+    (divert
+      to: (path
+        (identifier))))
+  (knot
+    (knotHeader
+      name: (identifier))
+    (glue)
+    (contentText)))

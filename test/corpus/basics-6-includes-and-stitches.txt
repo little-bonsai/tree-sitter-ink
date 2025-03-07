@@ -1,0 +1,77 @@
+===
+Stitch
+===
+=== the_orient_express ===
+= in_first_class
+	...
+= in_third_class
+	...
+= in_the_guards_van
+	...
+= missed_the_train
+	...
+
+---
+
+(file
+  (knot
+    (knotHeader
+      name: (identifier))
+    (stitch
+      (stitchHeader
+        (identifier))
+      (contentText))
+    (stitch
+      (stitchHeader
+        (identifier))
+      (contentText))
+    (stitch
+      (stitchHeader
+        (identifier))
+      (contentText))
+    (stitch
+      (stitchHeader
+        (identifier))
+      (contentText))))
+
+===
+Divert to stitch
+===
+*	[Travel in third class]
+	-> the_orient_express.in_third_class
+
+*	[Travel in the guard's van]
+	-> the_orient_express.in_the_guards_van
+
+---
+
+(file
+  (choice
+    inSupression: (contentText))
+  (divert
+    to: (path
+      (identifier)
+      (identifier)))
+  (choice
+    inSupression: (contentText))
+  (divert
+    to: (path
+      (identifier)
+      (identifier))))
+
+===
+includes
+===
+INCLUDE newspaper.ink
+INCLUDE cities/vienna.ink
+INCLUDE journeys/orient_express.ink
+
+---
+
+(file
+  (include
+    (includePath))
+  (include
+    (includePath))
+  (include
+    (includePath)))

@@ -1,0 +1,16 @@
+===
+Gathers
+===
+* a
+* b
+- c
+
+---
+
+(file
+  (choice
+    postSupression: (contentText))
+  (choice
+    postSupression: (contentText))
+  (gather
+    text: (contentText)))

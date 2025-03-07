@@ -1,0 +1,31 @@
+{
+  "grammars": [
+    {
+      "name": "ink",
+      "camelcase": "ink",
+      "scope": "source.ink",
+      "file-types": ["ink"],
+      "injection-regex": "^ink$",
+      "highlights": "queries/ink/highlights.scm"
+    }
+  ],
+  "metadata": {
+    "version": "0.0.0",
+    "license": "MIT",
+    "description": "werk",
+    "authors": [
+      {
+        "name": "Freddie Gilbraith",
+        "email": "freddie.gilbraith@littlebonsai.co.uk"
+      }
+    ]
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}

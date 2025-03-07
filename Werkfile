@@ -1,0 +1,29 @@
+config out-dir = "."
+
+build "src/grammar.json" {
+  from "grammar.js"
+  run "tree-sitter generate"
+}
+
+task build {
+  build "src/grammar.json"
+}
+
+task test-update {
+  build "src/grammar.json"
+  run "tree-sitter test --update --show-fields"
+}
+
+task test {
+  build "src/grammar.json"
+  run "tree-sitter test --show-fields"
+}
+
+task test-outline {
+  build "src/grammar.json"
+  run "tree-sitter test --show-fields --overview-only"
+}
+
+task copy-into-helix {
+}
+

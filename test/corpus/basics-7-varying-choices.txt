@@ -1,0 +1,114 @@
+===
+Fallback Choice
+===
+*	-> out_of_options
+
+---
+
+(file
+  (choice
+    postSupression: (divert
+      to: (path
+        (identifier)))))
+
+===
+choice then arrorw
+===
+* 	->
+	Mulder never could explain how he got out of that burning box car. -> season_2
+
+---
+
+(file
+  (choice
+    postSupression: (divert))
+  (contentText)
+  (divert
+    to: (path
+      (identifier))))
+
+===
+Conditional Choices
+===
+*	{ not visit_paris } 	[Go to Paris] -> visit_paris
++ 	{ visit_paris 	 } 		[Return to Paris] -> visit_paris
+*	{ visit_paris.met_estelle } [ Telephone Mme Estelle ] -> phone_estelle
+
+---
+
+(file
+  (choice
+    conditions: (identifier)
+    inSupression: (contentText)
+    postSupression: (divert
+      to: (path
+        (identifier))))
+  (choice
+    conditions: (identifier)
+    inSupression: (contentText)
+    postSupression: (divert
+      to: (path
+        (identifier))))
+  (choice
+    conditions: (path
+      (identifier)
+      (identifier))
+    inSupression: (contentText)
+    postSupression: (divert
+      to: (path
+        (identifier)))))
+
+===
+multiple conditions
+===
+*	{ not visit_paris } 	[Go to Paris] -> visit_paris
++ 	{ visit_paris } { not bored_of_paris }
+	[Return to Paris] -> visit_paris
+
+---
+
+(file
+  (choice
+    conditions: (identifier)
+    inSupression: (contentText)
+    postSupression: (divert
+      to: (path
+        (identifier))))
+  (choice
+    conditions: (identifier)
+    conditions: (identifier)
+    inSupression: (contentText)
+    postSupression: (divert
+      to: (path
+        (identifier)))))
+
+===
+logical operators
+===
+*	{ not (visit_paris or visit_rome) && (visit_london || visit_new_york) } [ Wait. Go where? I'm confused. ] -> visit_someplace
+
+---
+
+(file
+  (choice
+    conditions: (identifier)
+    conditions: (identifier)
+    conditions: (identifier)
+    conditions: (identifier)
+    inSupression: (contentText)
+    postSupression: (divert
+      to: (path
+        (identifier)))))
+
+===
+read counts
+===
+* {seen_clue > 3} [Flatout arrest Mr Jefferson]
+
+---
+
+(file
+  (choice
+    conditions: (identifier)
+    conditions: (number)
+    inSupression: (contentText)))

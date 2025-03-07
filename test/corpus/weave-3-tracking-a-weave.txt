@@ -1,0 +1,22 @@
+===
+Labels
+===
+* (a) b
++ (c) d
+- (e) f
+
+---
+
+(file
+  (choice
+    label: (path
+      (identifier))
+    postSupression: (contentText))
+  (choice
+    label: (path
+      (identifier))
+    postSupression: (contentText))
+  (gather
+    label: (path
+      (identifier))
+    text: (contentText)))

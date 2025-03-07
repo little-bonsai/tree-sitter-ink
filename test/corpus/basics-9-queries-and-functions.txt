@@ -1,0 +1,56 @@
+===
+ChoiceCount
+===
+*  {CHOICE_COUNT() == 1} abc
+
+---
+
+(file
+  (choice
+    conditions: (functionCall
+      (identifier))
+    conditions: (number)
+    postSupression: (contentText)))
+
+===
+TurnsSince
+===
+* 	{TURNS_SINCE(-> laugh) == 0}  You try to stop laughing.
+
+---
+
+(file
+  (choice
+    conditions: (functionCall
+      (identifier)
+      (divert
+        to: (path
+          (identifier))))
+    conditions: (number)
+    postSupression: (contentText)))
+
+===
+StatementExpression
+===
+~ SEED_RANDOM(235)
+
+---
+
+(file
+  (statement
+    (functionCall
+      (identifier)
+      (number))))
+
+===
+ExternalFunctions
+===
+EXTERNAL foo(a,b)
+
+---
+
+(file
+  (externalFunction
+    name: (identifier)
+    parameter: (identifier)
+    parameter: (identifier)))

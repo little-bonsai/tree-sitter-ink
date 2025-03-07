@@ -1,0 +1,25 @@
+===
+NestedFlow
+===
+* a
+** b
+** c
+-- d
+* e
+- f
+
+---
+
+(file
+  (choice
+    postSupression: (contentText))
+  (choice
+    postSupression: (contentText))
+  (choice
+    postSupression: (contentText))
+  (gather
+    text: (contentText))
+  (choice
+    postSupression: (contentText))
+  (gather
+    text: (contentText)))

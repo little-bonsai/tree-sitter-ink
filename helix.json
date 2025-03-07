@@ -1,0 +1,173 @@
+{
+  "inherits": "monokai_pro",
+  "annotation": "blue",
+  "attribute": "light-gray",
+  "comment": {
+    "fg": "white"
+  },
+  "constant": "blue",
+  "constant.builtin": "blue",
+  "constant.character.escape": {
+    "fg": "light-gray"
+  },
+  "constant.numeric": "purple",
+  "constructor": "blue",
+  "decorator": "purple",
+  "diagnostic.error": {
+    "underline": {
+      "color": "red",
+      "style": "curl"
+    }
+  },
+  "diagnostic.hint": {
+    "underline": {
+      "color": "light-gray",
+      "style": "curl"
+    }
+  },
+  "diagnostic.info": {
+    "underline": {
+      "color": "light-gray",
+      "style": "curl"
+    }
+  },
+  "diagnostic.warning": {
+    "underline": {
+      "color": "cyan",
+      "style": "curl"
+    }
+  },
+  "diff.delta": "blue",
+  "diff.minus": "red",
+  "diff.plus": "green",
+  "error": "red",
+  "function": "green",
+  "function.builtin": {
+    "fg": "cyan"
+  },
+  "function.macro": {
+    "fg": "blue"
+  },
+  "hint": "light-gray",
+  "include": "cyan",
+  "info": "light-gray",
+  "keyword": "cyan",
+  "keyword.control": "blue",
+  "keyword.control.conditional": "blue",
+  "keyword.directive": "blue",
+  "keyword.function": "red",
+  "keyword.storage": "cyan",
+  "label": "blue",
+  "markup.bold": {
+    "fg": "cyan",
+    "modifiers": ["bold"]
+  },
+  "markup.heading": "green",
+  "markup.italic": {
+    "fg": "cyan",
+    "modifiers": ["italic"]
+  },
+  "markup.link.text": "yellow",
+  "markup.link.url": {
+    "fg": "cyan",
+    "modifiers": ["underlined"]
+  },
+  "markup.quote": "green",
+  "markup.strikethrough": {
+    "modifiers": ["crossed_out"]
+  },
+  "module": "light-cyan",
+  "namespace": "green",
+  "operator": "red",
+  "punctuation": "white",
+  "special": "light-cyan",
+  "string": "yellow",
+  "tag": "blue",
+  "tag.attribute": "light-gray",
+  "type": "light-gray",
+  "type.builtin": {
+    "fg": "red"
+  },
+  "ui.background": {
+    "bg": "black"
+  },
+  "ui.cursor.match": {
+    "bg": "white"
+  },
+  "ui.cursor.primary": {
+    "modifiers": ["reversed"]
+  },
+  "ui.cursorline": {
+    "bg": "black",
+    "modifiers": ["underlined"]
+  },
+  "ui.help": {
+    "fg": "light-gray",
+    "bg": "black"
+  },
+  "ui.linenr": {
+    "fg": "white"
+  },
+  "ui.linenr.selected": {
+    "bg": "black",
+    "fg": "light-gray",
+    "modifiers": ["bold"]
+  },
+  "ui.menu": {
+    "fg": "light-gray",
+    "bg": "black"
+  },
+  "ui.menu.selected": {
+    "fg": "black",
+    "bg": "yellow"
+  },
+  "ui.popup": {
+    "bg": "black"
+  },
+  "ui.selection": {
+    "bg": "white"
+  },
+  "ui.statusline": {
+    "fg": "black",
+    "bg": "light-gray"
+  },
+  "ui.statusline.inactive": {
+    "fg": "black",
+    "bg": "white"
+  },
+  "ui.statusline.insert": {
+    "fg": "black",
+    "bg": "green"
+  },
+  "ui.statusline.normal": {
+    "fg": "black",
+    "bg": "blue"
+  },
+  "ui.statusline.select": {
+    "fg": "black",
+    "bg": "purple"
+  },
+  "ui.text": {
+    "fg": "light-gray"
+  },
+  "ui.text.focus": {
+    "fg": "yellow",
+    "modifiers": ["bold"]
+  },
+  "ui.text.inactive": {
+    "fg": "white"
+  },
+  "ui.virtual.light-grayspace": "light-gray",
+  "ui.virtual.ruler": {
+    "bg": "black"
+  },
+  "ui.window": {
+    "bg": "black"
+  },
+  "variable": "light-gray",
+  "variable.builtin": "purple",
+  "variable.other.member": "light-gray",
+  "variable.parameter": "light-gray",
+  "warning": "cyan",
+  "identifier": "light-gray"
+}

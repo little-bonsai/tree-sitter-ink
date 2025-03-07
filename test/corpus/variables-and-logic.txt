@@ -1,0 +1,188 @@
+===
+GlobalVariables
+===
+VAR foo = 1
+VAR bar = true
+VAR quz = foo
+
+---
+
+(file
+  (variableDef
+    (identifier)
+    (number))
+  (variableDef
+    (identifier)
+    (identifier))
+  (variableDef
+    (identifier)
+    (identifier)))
+
+===
+PrintingVariables
+===
+a {b} c
+
+---
+
+(file
+  (contentText)
+  (interpolation
+    (identifier))
+  (contentText))
+
+===
+StringsAreContent
+===
+VAR a_colour = ""
+
+~ a_colour = "col: {~red|blue|green|yellow}"
+
+---
+
+(file
+  (variableDef
+    (identifier)
+    (string))
+  (statement
+    (identifier)
+    (string
+      (contentText)
+      (inlineSequence
+        (contentText)
+        (contentText)
+        (contentText)
+        (contentText)))))
+
+===
+Assignment
+===
+~ knows_about_wager = true
+~ x = (x * x) - (y * y) + c
+~ y = 2 * x * y
+
+---
+
+(file
+  (statement
+    (identifier)
+    (identifier))
+  (statement
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier)
+    (identifier))
+  (statement
+    (identifier)
+    (number)
+    (identifier)
+    (identifier)))
+
+===
+TestConditions
+===
+{ x == 1.2 }
+{ x / 2 > 4 }
+{ y - 1 <= x * x }
+
+---
+
+(file
+  (interpolation
+    (identifier)
+    (number))
+  (interpolation
+    (identifier)
+    (number)
+    (number))
+  (interpolation
+    (identifier)
+    (number)
+    (identifier)
+    (identifier)))
+
+===
+FunctionCalls
+===
+{POW(3, 2)} is 9.
+{POW(16, 0.5)} is 4.
+
+---
+
+(file
+  (interpolation
+    (functionCall
+      (identifier)
+      (number)
+      (number)))
+  (contentText)
+  (interpolation
+    (functionCall
+      (identifier)
+      (number)
+      (number)))
+  (contentText))
+
+===
+StringComparason
+===
+{ "Yes, please." == "Yes, please." }
+{ "No, thank you." != "Yes, please." }
+{ "Yes, please" ? "ease" }
+
+---
+
+(file
+  (interpolation
+    (string
+      (contentText))
+    (string
+      (contentText)))
+  (interpolation
+    (string
+      (contentText))
+    (string
+      (contentText)))
+  (interpolation
+    (string
+      (contentText))
+    (string
+      (contentText))))
+
+===
+TempVariables
+===
+=== near_north_pole ===
+	~ temp number_of_warm_things = 0
+	{ blanket:
+		~ number_of_warm_things++
+	}
+---
+
+(file
+  (knot
+    (knotHeader
+      name: (identifier))
+    (statement
+      (tempDef
+        (identifier)
+        (number)))
+    (switchCase
+      over: (identifier)
+      then: (statement
+        (identifier)))))
+
+===
+Constants
+===
+CONST HASTINGS = "Hastings"
+
+---
+
+(file
+  (constantDef
+    (identifier)
+    (string
+      (contentText))))

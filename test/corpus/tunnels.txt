@@ -1,0 +1,40 @@
+===
+EnterTunnel
+===
+-> crossing_the_date_line ->
+
+---
+
+(file
+  (tunnel
+    to: (path
+      (identifier))))
+
+===
+ExitTunnel
+===
+=== crossing_the_date_line ===
+// this is a tunnel!
+- 	->->
+
+---
+
+(file
+  (knot
+    (knotHeader
+      name: (identifier))
+    (lineComment)
+    (gather
+      text: (tunnel))))
+
+===
+ReturnElsewhere
+===
+->-> youre_dead
+
+---
+
+(file
+  (tunnel
+    return: (path
+      (identifier))))

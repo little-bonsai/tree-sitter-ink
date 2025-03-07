@@ -1,0 +1,179 @@
+===
+Sequence
+===
+The radio hissed into life. {"Three!"|"Two!"|"One!"|There was the white noise racket of an explosion.|But it was just static.}
+
+{I bought a coffee with my fivepound note.|I bought a second coffee for my friend.|I didn't have enough money to buy any more coffee.}
+
+---
+
+(file
+  (contentText)
+  (inlineSequence
+    (contentText)
+    (contentText)
+    (contentText)
+    (contentText)
+    (contentText))
+  (inlineSequence
+    (contentText)
+    (contentText)
+    (contentText)))
+
+===
+Cycles
+===
+It was {&Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday} today.
+
+---
+
+(file
+  (contentText)
+  (inlineSequence
+    (contentText)
+    (contentText)
+    (contentText)
+    (contentText)
+    (contentText)
+    (contentText)
+    (contentText))
+  (contentText))
+
+===
+Once Only
+===
+He told me a joke. {!I laughed politely.|I smiled.|I grimaced.|I promised myself to not react again.}
+
+---
+
+(file
+  (contentText)
+  (inlineSequence
+    (contentText)
+    (contentText)
+    (contentText)
+    (contentText)))
+
+===
+shuffles
+===
+I tossed the coin. {~Heads|Tails}.
+
+---
+
+(file
+  (contentText)
+  (inlineSequence
+    (contentText)
+    (contentText))
+  (contentText))
+
+===
+Blank Elements
+===
+I took a step forward. {||||Then the lights went out. -> eek}
+{foo|bar|||}
+
+---
+
+(file
+  (contentText)
+  (inlineSequence
+    (contentText)
+    (divert
+      to: (path
+        (identifier))))
+  (inlineSequence
+    (contentText)
+    (contentText)))
+
+===
+nested
+===
+The Ratbear {&{wastes no time and |}swipes|scratches} {&at you|into your {&leg|arm|cheek}}.
+
+---
+
+(file
+  (contentText)
+  (inlineSequence
+    (contentText)
+    (inlineSequence
+      (contentText))
+    (contentText)
+    (contentText))
+  (inlineSequence
+    (contentText)
+    (contentText)
+    (inlineSequence
+      (contentText)
+      (contentText)
+      (contentText)))
+  (contentText))
+
+===
+in choices
+===
++ 	"Hello, {&Master|Monsieur Fogg|you|browneyes}!"[] I declared.
+
+---
+
+(file
+  (choice
+    preSupression: (contentText)
+    preSupression: (inlineSequence
+      (contentText)
+      (contentText)
+      (contentText)
+      (contentText))
+    preSupression: (contentText)
+    postSupression: (contentText)))
+
+===
+InlineConditional
+===
+{met_blofeld: "I saw him. Only for a moment." }
+
+---
+
+(file
+  (inlineConditional
+    (identifier)
+    then: (contentText)))
+
+===
+InlineConditionalWithElse
+===
+"His real name was {met_blofeld.learned_his_name: Franz|a secret}."
+
+---
+
+(file
+  (contentText)
+  (inlineConditional
+    (path
+      (identifier)
+      (identifier))
+    then: (contentText)
+    else: (contentText))
+  (contentText))
+
+===
+InlineConditionalNesed
+===
+{met_blofeld: "I saw him. Only for a moment. His real name was {met_blofeld.learned_his_name: Franz|kept a secret}." | "I missed him. Was he particularly evil?" }
+
+---
+
+(file
+  (inlineConditional
+    (identifier)
+    then: (contentText)
+    then: (inlineConditional
+      (path
+        (identifier)
+        (identifier))
+      then: (contentText)
+      else: (contentText))
+    then: (contentText)
+    else: (contentText)))

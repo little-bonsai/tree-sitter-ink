@@ -1,0 +1,96 @@
+===
+SimpleIf
+===
+{ x > 0:
+	~ y = x - 1
+}
+
+---
+
+(file
+  (switchCase
+    over: (identifier)
+    over: (number)
+    then: (statement
+      (identifier)
+      (identifier)
+      (number))))
+
+===
+OutlineIfElse
+===
+{ x > 0:
+	~ y = x - 1
+- else:
+	~ y = x + 1
+}
+
+---
+
+(file
+  (switchCase
+    over: (identifier)
+    over: (number)
+    then: (statement
+      (identifier)
+      (identifier)
+      (number))
+    body: (statement
+      (identifier)
+      (identifier)
+      (number))))
+
+===
+ElseIfConditions
+===
+{
+	- x == 0:
+		~ y = 0
+	- x > 0:
+		~ y = x - 1
+	- else:
+		~ y = x + 1
+}
+
+---
+
+(file
+  (switchCase
+    condition: (identifier)
+    condition: (number)
+    body: (statement
+      (identifier)
+      (number))
+    condition: (identifier)
+    condition: (number)
+    body: (statement
+      (identifier)
+      (identifier)
+      (number))
+    body: (statement
+      (identifier)
+      (identifier)
+      (number))))
+
+===
+SwitchBlocks
+===
+{ x:
+- 0: 	zero
+- 1: 	one
+- 2: 	two
+- else: lots
+}
+
+---
+
+(file
+  (switchCase
+    over: (identifier)
+    condition: (number)
+    body: (contentText)
+    condition: (number)
+    body: (contentText)
+    condition: (number)
+    body: (contentText)
+    body: (contentText)))

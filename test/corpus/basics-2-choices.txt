@@ -1,0 +1,61 @@
+===
+choice
+===
+Hello world!
+*	Hello back!
+	Nice to hear from you!
+
+---
+
+(file
+  (contentText)
+  (choice
+    postSupression: (contentText))
+  (contentText))
+
+===
+supressed choice text
+===
+Hello world!
+*	Hello [back!] right back to you!
+	Nice to hear from you!
+
+---
+
+(file
+  (contentText)
+  (choice
+    preSupression: (contentText)
+    inSupression: (contentText)
+    postSupression: (contentText))
+  (contentText))
+
+===
+deeper choice
+===
+Hello world!
+* *	Hello back!
+	Nice to hear from you!
+
+---
+
+(file
+  (contentText)
+  (choice
+    postSupression: (contentText))
+  (contentText))
+
+===
+sticky choice
+===
+Hello world!
++	Hello back!
+	Nice to hear from you!
+
+---
+
+(file
+  (contentText)
+  (choice
+    postSupression: (contentText))
+  (contentText))

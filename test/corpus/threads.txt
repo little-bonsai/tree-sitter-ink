@@ -1,0 +1,15 @@
+===
+Threads
+===
+<- conversation
+<- walking
+
+---
+
+(file
+  (thread
+    from: (path
+      (identifier)))
+  (thread
+    from: (path
+      (identifier))))
