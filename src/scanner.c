@@ -17,17 +17,13 @@ enum TokenType {
   GATHER_BULLETS,
 
   CHOICE_CONDITION_OPEN,
-  CHOICE_CONDITION_CLOSE,
 
   INLINE_CONDITIONAL_OPEN,
-  INLINE_CONDITIONAL_CLOSE,
 
   SWITCH_CASE_OPEN,
-  SWITCH_CASE_CLOSE,
 
   INLINE_SEQUENCE_OPEN,
   INLINE_SEQUENCE_SEP,
-  INLINE_SEQUENCE_CLOSE,
 
   TOKEN_TYPE_COUNT
 };
@@ -444,48 +440,6 @@ static bool parse_starting_at_opening_brace(TSLexer *lexer, Scanner *scanner,
   return false;
 }
 
-static bool parse_starting_at_closing_brace(TSLexer *lexer, Scanner *scanner,
-                                            BitValid valid_symbols) {
-  // lexer->log(lexer, "parse_starting_at_closing_brace");
-
-  if (bit_get(valid_symbols, CHOICE_CONDITION_CLOSE) &&
-      scanner->in_choice_condition) {
-    lexer->result_symbol = CHOICE_CONDITION_CLOSE;
-    scanner->in_choice_condition = false;
-    advance(lexer, scanner);
-    checkpoint(lexer, scanner);
-    return true;
-  }
-
-  if (bit_get(valid_symbols, INLINE_SEQUENCE_CLOSE) &&
-      scanner->inline_sequence_depth) {
-    lexer->result_symbol = INLINE_SEQUENCE_CLOSE;
-    scanner->inline_sequence_depth--;
-    advance(lexer, scanner);
-    checkpoint(lexer, scanner);
-    return true;
-  }
-
-  if (bit_get(valid_symbols, INLINE_CONDITIONAL_CLOSE) &&
-      scanner->inline_conditional_depth) {
-    lexer->result_symbol = INLINE_CONDITIONAL_CLOSE;
-    scanner->inline_conditional_depth--;
-    advance(lexer, scanner);
-    checkpoint(lexer, scanner);
-    return true;
-  }
-
-  if (bit_get(valid_symbols, SWITCH_CASE_CLOSE) && scanner->switch_case_depth) {
-    lexer->result_symbol = SWITCH_CASE_CLOSE;
-    scanner->switch_case_depth--;
-    advance(lexer, scanner);
-    checkpoint(lexer, scanner);
-    return true;
-  }
-
-  return false;
-}
-
 static void print_init_log(TSLexer *lexer, BitValid valid_symbols) {
   // lexer->log(lexer, "enter external scanner");
   print_bit_valid(lexer, valid_symbols);
@@ -552,10 +506,6 @@ bool tree_sitter_ink_external_scanner_scan(void *payload, TSLexer *lexer,
 
   if (cursor(lexer) == '{') {
     return parse_starting_at_opening_brace(lexer, scanner, valid_symbols);
-  }
-
-  if (cursor(lexer) == '}') {
-    return parse_starting_at_closing_brace(lexer, scanner, valid_symbols);
   }
 
   if (bit_get(valid_symbols, INLINE_SEQUENCE_SEP) && cursor(lexer) == '|' &&

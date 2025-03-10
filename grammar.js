@@ -58,17 +58,13 @@ module.exports = grammar({
     $.gatherBullets,
 
     $._choiceConditionOpen,
-    $._choiceConditionClose,
 
     $._inlineConditionalOpen,
-    $._inlineConditionalClose,
 
     $._switchCaseOpen,
-    $._switchCaseClose,
 
     $._inlineSequenceOpen,
     $._inlineSequenceSep,
-    $._inlineSequenceClose,
   ],
 
   conflicts: ($) => [
@@ -126,7 +122,7 @@ module.exports = grammar({
         ":",
         field("then", $._mixedTextPipe),
         optional(seq("|", field("else", $._mixedText))),
-        $._inlineConditionalClose,
+        "}",
       ),
 
     inlineSequence: ($) =>
@@ -134,7 +130,7 @@ module.exports = grammar({
         $._inlineSequenceOpen,
         optional(field("kind", choice("&", "!", "~"))),
         interleave(optional($._mixedText), $._inlineSequenceSep),
-        $._inlineSequenceClose,
+        "}",
       ),
 
     choice: ($) =>
@@ -143,7 +139,7 @@ module.exports = grammar({
         seq(
           $.choiceBullets,
           field("label", optional(seq("(", $.path, ")", /\s*/))),
-          field("conditions", repeat(seq($._choiceConditionOpen, $._expression, $._choiceConditionClose, /\s*/))),
+          field("conditions", repeat(seq($._choiceConditionOpen, $._expression, "}", /\s*/))),
           optional("\n"),
           field(
             "text",
@@ -172,7 +168,7 @@ module.exports = grammar({
         field("over", optional(seq($._expression, ":", field("then", optional(repeat($._stitchBody)))))),
         repeat(seq("-", field("condition", $._expression), ":", field("body", repeat1($._stitchBody)))),
         optional(seq("-", "else", ":", field("body", repeat1($._stitchBody)))),
-        $._switchCaseClose,
+        "}",
       ),
 
     statement: ($) =>
