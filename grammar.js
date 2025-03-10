@@ -141,21 +141,15 @@ module.exports = grammar({
           field("label", optional(seq("(", $.path, ")", /\s*/))),
           field("conditions", repeat(seq($._choiceConditionOpen, $._expression, "}", /\s*/))),
           optional("\n"),
-          field(
-            "text",
-            seq(
-              optional(
-                seq(
-                  optional(field("preSupression", $._mixedText)),
-                  "[",
-                  optional(field("inSupression", $._mixedText)),
-                  "]",
-                ),
-              ),
-              field("postSupression", $._lineOfMixedText),
-            ),
-          ),
+          field("text", $._choiceText),
         ),
+      ),
+    _choiceText: ($) =>
+      seq(
+        optional(
+          seq(optional(field("preSupression", $._mixedText)), "[", optional(field("inSupression", $._mixedText)), "]"),
+        ),
+        field("postSupression", $._lineOfMixedText),
       ),
 
     gather: ($) =>
@@ -165,11 +159,12 @@ module.exports = grammar({
       seq(
         $._switchCaseOpen,
         repeat("\n"),
-        field("over", optional(seq($._expression, ":", field("then", optional(repeat($._stitchBody)))))),
+        field("over", optional($._switchCaseOver)),
         repeat(seq("-", field("condition", $._expression), ":", field("body", repeat1($._stitchBody)))),
         optional(seq("-", "else", ":", field("body", repeat1($._stitchBody)))),
         "}",
       ),
+    _switchCaseOver: ($) => seq($._expression, ":", field("then", optional(repeat($._stitchBody)))),
 
     statement: ($) =>
       seq("~", choice($._expression, $._assignment, $.tempDef, $.return), optional($.lineComment), "\n"),

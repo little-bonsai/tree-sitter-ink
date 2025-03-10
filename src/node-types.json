@@ -362,8 +362,12 @@
       },
       "text": {
         "multiple": true,
-        "required": false,
+        "required": true,
         "types": [
+          {
+            "type": "\n",
+            "named": false
+          },
           {
             "type": "[",
             "named": false
@@ -371,6 +375,54 @@
           {
             "type": "]",
             "named": false
+          },
+          {
+            "type": "blockComment",
+            "named": true
+          },
+          {
+            "type": "contentText",
+            "named": true
+          },
+          {
+            "type": "divert",
+            "named": true
+          },
+          {
+            "type": "glue",
+            "named": true
+          },
+          {
+            "type": "inlineConditional",
+            "named": true
+          },
+          {
+            "type": "inlineSequence",
+            "named": true
+          },
+          {
+            "type": "interpolation",
+            "named": true
+          },
+          {
+            "type": "lineComment",
+            "named": true
+          },
+          {
+            "type": "tag",
+            "named": true
+          },
+          {
+            "type": "thread",
+            "named": true
+          },
+          {
+            "type": "todoComment",
+            "named": true
+          },
+          {
+            "type": "tunnel",
+            "named": true
           }
         ]
       }
@@ -2194,6 +2246,10 @@
         "required": false,
         "types": [
           {
+            "type": "\n",
+            "named": false
+          },
+          {
             "type": "!",
             "named": false
           },
@@ -2270,6 +2326,18 @@
             "named": false
           },
           {
+            "type": "blockComment",
+            "named": true
+          },
+          {
+            "type": "choice",
+            "named": true
+          },
+          {
+            "type": "contentText",
+            "named": true
+          },
+          {
             "type": "divert",
             "named": true
           },
@@ -2278,11 +2346,35 @@
             "named": true
           },
           {
+            "type": "gather",
+            "named": true
+          },
+          {
+            "type": "glue",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           },
           {
             "type": "identifierNamespaced",
+            "named": true
+          },
+          {
+            "type": "inlineConditional",
+            "named": true
+          },
+          {
+            "type": "inlineSequence",
+            "named": true
+          },
+          {
+            "type": "interpolation",
+            "named": true
+          },
+          {
+            "type": "lineComment",
             "named": true
           },
           {
@@ -2306,7 +2398,31 @@
             "named": true
           },
           {
+            "type": "statement",
+            "named": true
+          },
+          {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "switchCase",
+            "named": true
+          },
+          {
+            "type": "tag",
+            "named": true
+          },
+          {
+            "type": "thread",
+            "named": true
+          },
+          {
+            "type": "todoComment",
+            "named": true
+          },
+          {
+            "type": "tunnel",
             "named": true
           },
           {
