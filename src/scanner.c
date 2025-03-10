@@ -33,9 +33,7 @@ enum TokenType {
 /////////////
 
 typedef struct Scanner {
-  bool in_gather_line;
   bool in_choice_line;
-  bool in_choice_condition;
   size_t inline_sequence_depth;
   size_t inline_conditional_depth;
   size_t switch_case_depth;
@@ -45,9 +43,7 @@ typedef struct Scanner {
 
 void *tree_sitter_ink_external_scanner_create() {
   Scanner *s = ts_malloc(sizeof(Scanner));
-  s->in_gather_line = 0;
   s->in_choice_line = 0;
-  s->in_choice_condition = 0;
   s->inline_sequence_depth = 0;
   s->inline_conditional_depth = 0;
   s->switch_case_depth = 0;
@@ -114,21 +110,6 @@ static bool match_str_now(TSLexer *lexer, Scanner *scanner, char *str) {
   }
 }
 
-static bool is_unicode_char(unsigned long ch) {
-  // Basic Latin letters and numbers
-  if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') || (ch >= '0' && ch <= '9') || ch == '_') {
-    return true;
-  }
-
-  // Unicode letter ranges (covers most common scripts)
-  return (ch >= 0x0080 && ch <= 0x1FFF) || // Latin Extended to Greek Extended
-         (ch >= 0x2C00 && ch <= 0x2FEF) || // Glagolitic to Kangxi Radicals
-         (ch >= 0x3040 && ch <= 0x318F) || // Hiragana to Hangul
-         (ch >= 0x3300 && ch <= 0x9FFF) || // CJK
-         (ch >= 0xAC00 && ch <= 0xD7AF) || // Hangul Syllables
-         (ch >= 0xF900 && ch <= 0xFAFF);   // CJK Compatibility
-}
-
 //////////////
 // BitValid //
 //////////////
@@ -177,36 +158,6 @@ static void print_bit_valid(TSLexer *lexer, BitValid bf) {
 /////////////
 // Parsers //
 /////////////
-
-static bool parse_as_identifier(Scanner *scanner, TSLexer *lexer) {
-  lexer->log(lexer, "parse_as_identifier");
-
-  size_t buf_len = 0;
-  Array(char) buf = array_new();
-
-  for (;;) {
-    if (lexer->eof(lexer)) return true;
-    if (!is_unicode_char(cursor(lexer))) {
-      lexer->log(lexer, "identifier complete at '%c'", cursor(lexer));
-
-      if (buf_len == 0) {
-        lexer->log(lexer, "identifier zero len");
-        return false;
-      }
-
-      // some control words can LOOK like identifiers, but aren't actually
-      if (strncmp(buf.contents, "not", buf_len) == 0) return false;
-      if (strncmp(buf.contents, "and", buf_len) == 0) return false;
-      if (strncmp(buf.contents, "or", buf_len) == 0) return false;
-
-      return true;
-    }
-
-    array_push(&buf, cursor(lexer));
-    buf_len++;
-    advance(lexer, scanner);
-  }
-}
 
 static bool parse_as_choice_bullets(Scanner *scanner, TSLexer *lexer) {
   lexer->log(lexer, "parse_as_choice_bullets");
@@ -320,7 +271,6 @@ static bool parse_starting_at_opening_brace(TSLexer *lexer, Scanner *scanner, Bi
   // parse further
   if (bit_get(valid_symbols, CHOICE_CONDITION_OPEN) && scanner->in_choice_line) {
     lexer->result_symbol = CHOICE_CONDITION_OPEN;
-    scanner->in_choice_condition = true;
     advance(lexer, scanner);
     checkpoint(lexer, scanner);
     return true;
@@ -443,7 +393,6 @@ bool tree_sitter_ink_external_scanner_scan(void *payload, TSLexer *lexer, const 
 
   if (cursor((lexer)) == '\n') {
     scanner->in_choice_line = false;
-    scanner->in_gather_line = false;
     return false;
   }
 
@@ -460,7 +409,6 @@ bool tree_sitter_ink_external_scanner_scan(void *payload, TSLexer *lexer, const 
       return false;
     }
     lexer->result_symbol = GATHER_BULLETS;
-    scanner->in_gather_line = true;
     return true;
   }
 
