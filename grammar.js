@@ -239,6 +239,6 @@ module.exports = grammar({
     string: ($) => seq('"', optional($._mixedTextQuote), '"'),
 
     identifier: () => /\w[\w\d]*/,
-    identifierNamespaced: ($) => seq($.identifier, ".", $.identifier),
+    identifierNamespaced: ($) => seq(field("namespace", $.identifier), ".", $.identifier),
   },
 });

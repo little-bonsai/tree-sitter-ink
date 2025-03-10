@@ -17,6 +17,7 @@
 
 (gather label: _) @label
 (choice label: _) @label
+(identifierNamespaced namespace: _) @namespace
 
 ["return"] @keyword.control.return
 ["INCLUDE" "->" "->" "<-"] @keyword.include

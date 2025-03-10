@@ -23,7 +23,7 @@ VAR status = colours.blue
   (variableDef
     (identifier)
     (identifierNamespaced
-      (identifier)
+      namespace: (identifier)
       (identifier))))
 
 ===
