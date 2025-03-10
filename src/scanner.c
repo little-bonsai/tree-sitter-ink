@@ -170,33 +170,26 @@ static BitValid bit_init(const bool *valid_symbols) {
 static BitValid bit_init_empty() { return 0ULL; }
 
 static void bit_log(TSLexer *lexer, BitValid bf) {
-  // lexer->log(lexer, "Bitfield (hex): 0x%016lX", bf);
+  lexer->log(lexer, "Bitfield (hex): 0x%016lX", bf);
 }
 
 static void print_bit_valid(TSLexer *lexer, BitValid bf) {
-  // if (bit_get(bf, CONTENT_TEXT)) lexer->log(lexer, "\tCONTENT_TEXT");
-  // if (bit_get(bf, CONTENT_TEXT_DELIM_QUOTE))
-  //   lexer->log(lexer, "\tCONTENT_TEXT_DELIM_QUOTE");
-  // if (bit_get(bf, CONTENT_TEXT_DELIM_PIPE))
-  //   lexer->log(lexer, "\tCONTENT_TEXT_DELIM_PIPE");
-  // if (bit_get(bf, CHOICE_BULLETS)) lexer->log(lexer, "\tCHOICE_BULLETS");
-  // if (bit_get(bf, GATHER_BULLETS)) lexer->log(lexer, "\tGATHER_BULLETS");
-  // if (bit_get(bf, CHOICE_CONDITION_OPEN))
-  //   lexer->log(lexer, "\tCHOICE_CONDITION_OPEN");
-  // if (bit_get(bf, CHOICE_CONDITION_CLOSE))
-  //   lexer->log(lexer, "\tCHOICE_CONDITION_CLOSE");
-  // if (bit_get(bf, INLINE_CONDITIONAL_OPEN))
-  //   lexer->log(lexer, "\tINLINE_CONDITIONAL_OPEN");
-  // if (bit_get(bf, INLINE_CONDITIONAL_CLOSE))
-  //   lexer->log(lexer, "\tINLINE_CONDITIONAL_CLOSE");
-  // if (bit_get(bf, SWITCH_CASE_OPEN)) lexer->log(lexer, "\tSWITCH_CASE_OPEN");
-  // if (bit_get(bf, SWITCH_CASE_CLOSE)) lexer->log(lexer,
-  // "\tSWITCH_CASE_CLOSE"); if (bit_get(bf, INLINE_SEQUENCE_OPEN))
-  //   lexer->log(lexer, "\tINLINE_SEQUENCE_OPEN");
-  // if (bit_get(bf, INLINE_SEQUENCE_SEP))
-  //   lexer->log(lexer, "\tINLINE_SEQUENCE_SEP");
-  // if (bit_get(bf, INLINE_SEQUENCE_CLOSE))
-  //   lexer->log(lexer, "\tINLINE_SEQUENCE_CLOSE");
+  if (bit_get(bf, CONTENT_TEXT)) lexer->log(lexer, "\tCONTENT_TEXT");
+  if (bit_get(bf, CONTENT_TEXT_DELIM_QUOTE))
+    lexer->log(lexer, "\tCONTENT_TEXT_DELIM_QUOTE");
+  if (bit_get(bf, CONTENT_TEXT_DELIM_PIPE))
+    lexer->log(lexer, "\tCONTENT_TEXT_DELIM_PIPE");
+  if (bit_get(bf, CHOICE_BULLETS)) lexer->log(lexer, "\tCHOICE_BULLETS");
+  if (bit_get(bf, GATHER_BULLETS)) lexer->log(lexer, "\tGATHER_BULLETS");
+  if (bit_get(bf, CHOICE_CONDITION_OPEN))
+    lexer->log(lexer, "\tCHOICE_CONDITION_OPEN");
+  if (bit_get(bf, INLINE_CONDITIONAL_OPEN))
+    lexer->log(lexer, "\tINLINE_CONDITIONAL_OPEN");
+  if (bit_get(bf, SWITCH_CASE_OPEN)) lexer->log(lexer, "\tSWITCH_CASE_OPEN");
+  if (bit_get(bf, INLINE_SEQUENCE_OPEN))
+    lexer->log(lexer, "\tINLINE_SEQUENCE_OPEN");
+  if (bit_get(bf, INLINE_SEQUENCE_SEP))
+    lexer->log(lexer, "\tINLINE_SEQUENCE_SEP");
 }
 
 /////////////
@@ -204,7 +197,7 @@ static void print_bit_valid(TSLexer *lexer, BitValid bf) {
 /////////////
 
 static bool parse_as_identifier(Scanner *scanner, TSLexer *lexer) {
-  // lexer->log(lexer, "parse_as_identifier");
+  lexer->log(lexer, "parse_as_identifier");
 
   size_t buf_len = 0;
   Array(char) buf = array_new();
@@ -212,10 +205,10 @@ static bool parse_as_identifier(Scanner *scanner, TSLexer *lexer) {
   for (;;) {
     if (lexer->eof(lexer)) return true;
     if (!is_unicode_char(cursor(lexer))) {
-      // lexer->log(lexer, "identifier complete at '%c'", cursor(lexer));
+      lexer->log(lexer, "identifier complete at '%c'", cursor(lexer));
 
       if (buf_len == 0) {
-        // lexer->log(lexer, "identifier zero len");
+        lexer->log(lexer, "identifier zero len");
         return false;
       }
 
@@ -234,7 +227,7 @@ static bool parse_as_identifier(Scanner *scanner, TSLexer *lexer) {
 }
 
 static bool parse_as_choice_bullets(Scanner *scanner, TSLexer *lexer) {
-  // lexer->log(lexer, "parse_as_choice_bullets");
+  lexer->log(lexer, "parse_as_choice_bullets");
 
   char bullet_char = cursor(lexer);
 
@@ -251,7 +244,7 @@ static bool parse_as_choice_bullets(Scanner *scanner, TSLexer *lexer) {
 }
 
 static bool parse_as_gather_bullets(Scanner *scanner, TSLexer *lexer) {
-  // lexer->log(lexer, "parse_as_choice_bullets");
+  lexer->log(lexer, "parse_as_choice_bullets");
 
   char bullet_char = '-';
 
@@ -267,7 +260,7 @@ static bool parse_as_gather_bullets(Scanner *scanner, TSLexer *lexer) {
     if (lexer->eof(lexer)) return false;
   }
 
-  // lexer->log(lexer, "cursor ends at '%lc'", cursor(lexer));
+  lexer->log(lexer, "cursor ends at '%lc'", cursor(lexer));
 
   if (cursor(lexer) == '>') {
     // this was a divert symbol
@@ -281,8 +274,8 @@ static bool parse_as_gather_bullets(Scanner *scanner, TSLexer *lexer) {
 
 static bool parse_as_content_text(Scanner *scanner, TSLexer *lexer,
                                   char delim) {
-  // lexer->log(lexer, "parse_as_content_text");
-  // lexer->log(lexer, "start at '%lc'", cursor(lexer));
+  lexer->log(lexer, "parse_as_content_text");
+  lexer->log(lexer, "start at '%lc'", cursor(lexer));
   if (match_str_now(lexer, scanner, "=")) return false; // stitch or knot
   if (match_str_now(lexer, scanner, "~")) return false; // statement
   if (match_str_now(lexer, scanner, "(")) return false; // label
@@ -346,7 +339,7 @@ static bool parse_as_content_text(Scanner *scanner, TSLexer *lexer,
 
 static bool parse_starting_at_opening_brace(TSLexer *lexer, Scanner *scanner,
                                             BitValid valid_symbols) {
-  // lexer->log(lexer, "parse_starting_at_opening_brace");
+  lexer->log(lexer, "parse_starting_at_opening_brace");
 
   // we can tell if we're in choice conditions just by context, don't need to
   // parse further
@@ -370,9 +363,9 @@ static bool parse_starting_at_opening_brace(TSLexer *lexer, Scanner *scanner,
 
   for (;;) {
     if (depth == 0) {
-      // lexer->log(lexer, "upper:");
+      lexer->log(lexer, "upper:");
       print_bit_valid(lexer, sym_valid_upper);
-      // lexer->log(lexer, "lower:");
+      lexer->log(lexer, "lower:");
       print_bit_valid(lexer, sym_valid_lower);
 
       // DONE! figure out what we could be
@@ -441,17 +434,16 @@ static bool parse_starting_at_opening_brace(TSLexer *lexer, Scanner *scanner,
 }
 
 static void print_init_log(TSLexer *lexer, BitValid valid_symbols) {
-  // lexer->log(lexer, "enter external scanner");
+  lexer->log(lexer, "enter external scanner");
   print_bit_valid(lexer, valid_symbols);
 }
 
 static void trim_leading_whitespace(TSLexer *lexer) {
-  // lexer->log(lexer, "start at '%lc'", cursor(lexer));
+  lexer->log(lexer, "start at '%lc'", cursor(lexer));
   while (cursor(lexer) == ' ' || cursor(lexer) == '\t') {
     skip(lexer);
   }
-  // lexer->log(lexer, "start at '%lc' after skipping whitespace",
-  // cursor(lexer));
+  lexer->log(lexer, "start at '%lc' after skipping whitespace", cursor(lexer));
 }
 
 static void reset_scanner_at_start_of_line(TSLexer *lexer, Scanner *scanner) {
