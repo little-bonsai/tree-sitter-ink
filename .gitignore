@@ -12,3 +12,5 @@ target
 ink.dylib
 ink.dylib.dSYM
 .DS_Store
+samples
+.werk-cache

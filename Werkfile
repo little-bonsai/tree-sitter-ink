@@ -1,4 +1,8 @@
-config out-dir = "."
+default out-dir = "."
+
+build "samples/TheIntercept.ink" {
+  run "curl https://raw.githubusercontent.com/inkle/the-intercept/refs/heads/master/Assets/Ink/TheIntercept.ink -o <out:out-dir>"
+}
 
 build "src/grammar.json" {
   from "grammar.js"
@@ -24,6 +28,13 @@ task test-outline {
   run "tree-sitter test --show-fields --overview-only"
 }
 
-task copy-into-helix {
+task test-samples {
+  build "samples/TheIntercept.ink"
+
+  run "tree-sitter parse samples/*.ink --quiet --stat --rebuild"
 }
 
+task test-suite {
+  build "test"
+  build "test-samples"
+}
