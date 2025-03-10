@@ -1,29 +1,28 @@
-(string) @string
-(identifier) @identifier
-(number) @constant.numeric
-(functionCall) @function
-(includePath) @string
-(knotHeader) @namespace
-(knotHeader (identifier)) @namespace
-(stitchHeader) @namespace
-(stitchHeader (identifier)) @namespace
-(tag) @tag
-(lineComment) @comment
+((identifier) @variable.builtin (#any-of? @variable.builtin "END" "DONE") ) @variable.builtin
+((identifier) @constant.builtin (#any-of? @constant.builtin "true" "false") ) @constant.builtin.boolean
+
+(gather label: _ @label)
+(choice label: _ @label)
+
 (blockComment) @comment
+(choiceBullets) @keyword.control
+(functionCall) @function
+(gatherBullets) @keyword.control
+(identifier) @identifier
+(includePath) @string
+(knotHeader (identifier)) @namespace
+(knotHeader) @namespace
+(lineComment) @comment
+(number) @constant.numeric
+(stitchHeader (identifier)) @namespace
+(stitchHeader) @namespace
+(string) @string
+(tag) @tag
 (todoComment) @info
 
-(choiceBullets) @keyword.control
-(gatherBullets) @keyword.control
-
-(gather label: _) @label
-(choice label: _) @label
-(identifierNamespaced namespace: _) @namespace
-
-((identifier) @constant.builtin (#any-of? @constant.builtin "END" "DONE"))
-((identifier) @constant.builtin.boolean (#any-of? @constant.builtin.boolean "false" "true"))
-
 ["(" ")" "{" "}"] @punctuation
-["->" "->" "<-"] @keyword.control
+["->" "->" "<-" "else"] @keyword.control
+["~"] @keyword.operator
 ["?" ">" "<" ">=" "<=" "==" "!=" "-" "+" "*" "/" "and" "&&" "or" "||" "!" "not" "=" "+=" "-=" "++" "--"] @operator
 ["CONST"  "VAR"  "temp"  "LIST"] @keyword.storage
 ["EXTERNAL" "function"] @keyword.function
