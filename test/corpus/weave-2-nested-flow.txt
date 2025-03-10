@@ -12,14 +12,20 @@ NestedFlow
 
 (file
   (choice
+    (choiceBullets)
     postSupression: (contentText))
   (choice
+    (choiceBullets)
     postSupression: (contentText))
   (choice
+    (choiceBullets)
     postSupression: (contentText))
   (gather
+    (gatherBullets)
     text: (contentText))
   (choice
+    (choiceBullets)
     postSupression: (contentText))
   (gather
+    (gatherBullets)
     text: (contentText)))

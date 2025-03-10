@@ -7,6 +7,7 @@ Fallback Choice
 
 (file
   (choice
+    (choiceBullets)
     postSupression: (divert
       to: (path
         (identifier)))))
@@ -21,6 +22,7 @@ choice then arrorw
 
 (file
   (choice
+    (choiceBullets)
     postSupression: (divert))
   (contentText)
   (divert
@@ -38,18 +40,21 @@ Conditional Choices
 
 (file
   (choice
+    (choiceBullets)
     conditions: (identifier)
     inSupression: (contentText)
     postSupression: (divert
       to: (path
         (identifier))))
   (choice
+    (choiceBullets)
     conditions: (identifier)
     inSupression: (contentText)
     postSupression: (divert
       to: (path
         (identifier))))
   (choice
+    (choiceBullets)
     conditions: (path
       (identifier)
       (identifier))
@@ -69,12 +74,14 @@ multiple conditions
 
 (file
   (choice
+    (choiceBullets)
     conditions: (identifier)
     inSupression: (contentText)
     postSupression: (divert
       to: (path
         (identifier))))
   (choice
+    (choiceBullets)
     conditions: (identifier)
     conditions: (identifier)
     inSupression: (contentText)
@@ -91,6 +98,7 @@ logical operators
 
 (file
   (choice
+    (choiceBullets)
     conditions: (identifier)
     conditions: (identifier)
     conditions: (identifier)
@@ -109,6 +117,7 @@ read counts
 
 (file
   (choice
+    (choiceBullets)
     conditions: (identifier)
     conditions: (number)
     inSupression: (contentText)))

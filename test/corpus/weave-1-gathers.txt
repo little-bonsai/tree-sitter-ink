@@ -9,8 +9,11 @@ Gathers
 
 (file
   (choice
+    (choiceBullets)
     postSupression: (contentText))
   (choice
+    (choiceBullets)
     postSupression: (contentText))
   (gather
+    (gatherBullets)
     text: (contentText)))

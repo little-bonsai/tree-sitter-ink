@@ -120,6 +120,7 @@ in choices
 
 (file
   (choice
+    (choiceBullets)
     preSupression: (contentText)
     preSupression: (inlineSequence
       (contentText)

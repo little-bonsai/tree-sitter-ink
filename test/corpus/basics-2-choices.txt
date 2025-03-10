@@ -10,6 +10,7 @@ Hello world!
 (file
   (contentText)
   (choice
+    (choiceBullets)
     postSupression: (contentText))
   (contentText))
 
@@ -25,6 +26,7 @@ Hello world!
 (file
   (contentText)
   (choice
+    (choiceBullets)
     preSupression: (contentText)
     inSupression: (contentText)
     postSupression: (contentText))
@@ -42,6 +44,7 @@ Hello world!
 (file
   (contentText)
   (choice
+    (choiceBullets)
     postSupression: (contentText))
   (contentText))
 
@@ -57,5 +60,6 @@ Hello world!
 (file
   (contentText)
   (choice
+    (choiceBullets)
     postSupression: (contentText))
   (contentText))

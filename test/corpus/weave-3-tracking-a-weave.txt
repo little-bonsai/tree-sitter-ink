@@ -9,14 +9,17 @@ Labels
 
 (file
   (choice
+    (choiceBullets)
     label: (path
       (identifier))
     postSupression: (contentText))
   (choice
+    (choiceBullets)
     label: (path
       (identifier))
     postSupression: (contentText))
   (gather
+    (gatherBullets)
     label: (path
       (identifier))
     text: (contentText)))

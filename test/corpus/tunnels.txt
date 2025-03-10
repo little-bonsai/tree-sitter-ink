@@ -25,6 +25,7 @@ ExitTunnel
       name: (identifier))
     (lineComment)
     (gather
+      (gatherBullets)
       text: (tunnel))))
 
 ===

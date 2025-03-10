@@ -47,12 +47,14 @@ Divert to stitch
 
 (file
   (choice
+    (choiceBullets)
     inSupression: (contentText))
   (divert
     to: (path
       (identifier)
       (identifier)))
   (choice
+    (choiceBullets)
     inSupression: (contentText))
   (divert
     to: (path
