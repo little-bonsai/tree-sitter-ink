@@ -19,9 +19,13 @@
 (choice label: _) @label
 (identifierNamespaced namespace: _) @namespace
 
-["return"] @keyword.control.return
-["INCLUDE" "->" "->" "<-"] @keyword.include
-["EXTERNAL" "function"] @keyword.function
-["?" ">" "<" ">=" "<=" "==" "!=" "-" "+" "*" "/" "and" "&&" "or" "||" "!" "not" "=" "+=" "-=" "++" "--"] @operator
+((identifier) @constant.builtin (#any-of? @constant.builtin "END" "DONE"))
+((identifier) @constant.builtin.boolean (#any-of? @constant.builtin.boolean "false" "true"))
+
 ["(" ")" "{" "}"] @punctuation
+["->" "->" "<-"] @keyword.control
+["?" ">" "<" ">=" "<=" "==" "!=" "-" "+" "*" "/" "and" "&&" "or" "||" "!" "not" "=" "+=" "-=" "++" "--"] @operator
 ["CONST"  "VAR"  "temp"  "LIST"] @keyword.storage
+["EXTERNAL" "function"] @keyword.function
+["INCLUDE"] @keyword.include
+["return"] @keyword.control.return

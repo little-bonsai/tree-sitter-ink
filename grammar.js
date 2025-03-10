@@ -6,9 +6,7 @@ function interleave0(exp, sep) {
   return seq(optional(exp), repeat(seq(sep, exp)));
 }
 
-/**
-seq, where everything is optional, but at least one thing must be present
-*/
+/** seq, where everything is optional, but at least one thing must be present */
 function nonNullOptSeq(...opts) {
   const acc = [];
   for (let i = 0; i < opts.length; i++) {
@@ -217,7 +215,6 @@ module.exports = grammar({
       ),
 
     listSet: ($) => seq("(", interleave0(choice($.identifier, $.identifierNamespaced), ","), ")"),
-
     functionCall: ($) => seq($.identifier, "(", optional(interleave($._expression, ",")), ")"),
     return: ($) => seq("return", $._expression),
     blockComment: () => seq("/*", /[^(\*\/)]*/, "*/"),
@@ -237,7 +234,6 @@ module.exports = grammar({
     tag: ($) => seq("#", $._mixedText),
     number: () => /\d+(\.\d+)?/,
     string: ($) => seq('"', optional($._mixedTextQuote), '"'),
-
     identifier: () => /\w[\w\d]*/,
     identifierNamespaced: ($) => seq(field("namespace", $.identifier), ".", $.identifier),
   },
