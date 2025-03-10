@@ -57,12 +57,9 @@ void *tree_sitter_ink_external_scanner_create() {
   return s;
 }
 
-void tree_sitter_ink_external_scanner_destroy(void *payload) {
-  ts_free((Scanner *)(payload));
-}
+void tree_sitter_ink_external_scanner_destroy(void *payload) { ts_free((Scanner *)(payload)); }
 
-unsigned tree_sitter_ink_external_scanner_serialize(void *payload,
-                                                    char *buffer) {
+unsigned tree_sitter_ink_external_scanner_serialize(void *payload, char *buffer) {
   Scanner *scanner = (Scanner *)payload;
   Scanner *buf = (Scanner *)buffer;
 
@@ -70,9 +67,7 @@ unsigned tree_sitter_ink_external_scanner_serialize(void *payload,
   return sizeof(Scanner);
 }
 
-void tree_sitter_ink_external_scanner_deserialize(void *payload,
-                                                  const char *buffer,
-                                                  unsigned length) {
+void tree_sitter_ink_external_scanner_deserialize(void *payload, const char *buffer, unsigned length) {
   Scanner *scanner = (Scanner *)payload;
   Scanner *buf = (Scanner *)buffer;
 
@@ -121,8 +116,7 @@ static bool match_str_now(TSLexer *lexer, Scanner *scanner, char *str) {
 
 static bool is_unicode_char(unsigned long ch) {
   // Basic Latin letters and numbers
-  if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') ||
-      (ch >= '0' && ch <= '9') || ch == '_') {
+  if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') || (ch >= '0' && ch <= '9') || ch == '_') {
     return true;
   }
 
@@ -149,15 +143,11 @@ static void bit_set(BitValid *bitfield, unsigned int index, bool value) {
   }
 }
 
-static bool bit_get(BitValid bitfield, unsigned int index) {
-  return (bitfield & (1ULL << index)) != 0;
-}
+static bool bit_get(BitValid bitfield, unsigned int index) { return (bitfield & (1ULL << index)) != 0; }
 
 static bool bit_any(BitValid bitfield) { return bitfield != 0; }
 
-static void bitfield_toggle(BitValid *bitfield, unsigned int index) {
-  *bitfield = *bitfield ^ (1ULL << index);
-}
+static void bitfield_toggle(BitValid *bitfield, unsigned int index) { *bitfield = *bitfield ^ (1ULL << index); }
 
 static BitValid bit_init(const bool *valid_symbols) {
   BitValid x = 0ULL;
@@ -169,27 +159,19 @@ static BitValid bit_init(const bool *valid_symbols) {
 
 static BitValid bit_init_empty() { return 0ULL; }
 
-static void bit_log(TSLexer *lexer, BitValid bf) {
-  lexer->log(lexer, "Bitfield (hex): 0x%016lX", bf);
-}
+static void bit_log(TSLexer *lexer, BitValid bf) { lexer->log(lexer, "Bitfield (hex): 0x%016lX", bf); }
 
 static void print_bit_valid(TSLexer *lexer, BitValid bf) {
   if (bit_get(bf, CONTENT_TEXT)) lexer->log(lexer, "\tCONTENT_TEXT");
-  if (bit_get(bf, CONTENT_TEXT_DELIM_QUOTE))
-    lexer->log(lexer, "\tCONTENT_TEXT_DELIM_QUOTE");
-  if (bit_get(bf, CONTENT_TEXT_DELIM_PIPE))
-    lexer->log(lexer, "\tCONTENT_TEXT_DELIM_PIPE");
+  if (bit_get(bf, CONTENT_TEXT_DELIM_QUOTE)) lexer->log(lexer, "\tCONTENT_TEXT_DELIM_QUOTE");
+  if (bit_get(bf, CONTENT_TEXT_DELIM_PIPE)) lexer->log(lexer, "\tCONTENT_TEXT_DELIM_PIPE");
   if (bit_get(bf, CHOICE_BULLETS)) lexer->log(lexer, "\tCHOICE_BULLETS");
   if (bit_get(bf, GATHER_BULLETS)) lexer->log(lexer, "\tGATHER_BULLETS");
-  if (bit_get(bf, CHOICE_CONDITION_OPEN))
-    lexer->log(lexer, "\tCHOICE_CONDITION_OPEN");
-  if (bit_get(bf, INLINE_CONDITIONAL_OPEN))
-    lexer->log(lexer, "\tINLINE_CONDITIONAL_OPEN");
+  if (bit_get(bf, CHOICE_CONDITION_OPEN)) lexer->log(lexer, "\tCHOICE_CONDITION_OPEN");
+  if (bit_get(bf, INLINE_CONDITIONAL_OPEN)) lexer->log(lexer, "\tINLINE_CONDITIONAL_OPEN");
   if (bit_get(bf, SWITCH_CASE_OPEN)) lexer->log(lexer, "\tSWITCH_CASE_OPEN");
-  if (bit_get(bf, INLINE_SEQUENCE_OPEN))
-    lexer->log(lexer, "\tINLINE_SEQUENCE_OPEN");
-  if (bit_get(bf, INLINE_SEQUENCE_SEP))
-    lexer->log(lexer, "\tINLINE_SEQUENCE_SEP");
+  if (bit_get(bf, INLINE_SEQUENCE_OPEN)) lexer->log(lexer, "\tINLINE_SEQUENCE_OPEN");
+  if (bit_get(bf, INLINE_SEQUENCE_SEP)) lexer->log(lexer, "\tINLINE_SEQUENCE_SEP");
 }
 
 /////////////
@@ -231,8 +213,7 @@ static bool parse_as_choice_bullets(Scanner *scanner, TSLexer *lexer) {
 
   char bullet_char = cursor(lexer);
 
-  while (cursor(lexer) == bullet_char || cursor(lexer) == ' ' ||
-         cursor(lexer) == '\t') {
+  while (cursor(lexer) == bullet_char || cursor(lexer) == ' ' || cursor(lexer) == '\t') {
     checkpoint(lexer, scanner);
     advance(lexer, scanner);
     if (lexer->eof(lexer)) return false;
@@ -253,8 +234,7 @@ static bool parse_as_gather_bullets(Scanner *scanner, TSLexer *lexer) {
     return false;
   }
 
-  while (cursor(lexer) == bullet_char || cursor(lexer) == ' ' ||
-         cursor(lexer) == '\t') {
+  while (cursor(lexer) == bullet_char || cursor(lexer) == ' ' || cursor(lexer) == '\t') {
     checkpoint(lexer, scanner);
     advance(lexer, scanner);
     if (lexer->eof(lexer)) return false;
@@ -272,8 +252,7 @@ static bool parse_as_gather_bullets(Scanner *scanner, TSLexer *lexer) {
   return true;
 }
 
-static bool parse_as_content_text(Scanner *scanner, TSLexer *lexer,
-                                  char delim) {
+static bool parse_as_content_text(Scanner *scanner, TSLexer *lexer, char delim) {
   lexer->log(lexer, "parse_as_content_text");
   lexer->log(lexer, "start at '%lc'", cursor(lexer));
   if (match_str_now(lexer, scanner, "=")) return false; // stitch or knot
@@ -322,13 +301,10 @@ static bool parse_as_content_text(Scanner *scanner, TSLexer *lexer,
       if (cursor(lexer) == '>' || cursor(lexer) == '-') return true;
     }
 
-    if (scanner->in_choice_line && match_str_now(lexer, scanner, "["))
-      return true;
-    if (scanner->in_choice_line && match_str_now(lexer, scanner, "]"))
-      return true;
+    if (scanner->in_choice_line && match_str_now(lexer, scanner, "[")) return true;
+    if (scanner->in_choice_line && match_str_now(lexer, scanner, "]")) return true;
 
-    if (scanner->inline_sequence_depth && match_str_now(lexer, scanner, "|"))
-      return true;
+    if (scanner->inline_sequence_depth && match_str_now(lexer, scanner, "|")) return true;
 
     if (match_str_now(lexer, scanner, "{")) return true;
     if (match_str_now(lexer, scanner, "}")) return true;
@@ -337,14 +313,12 @@ static bool parse_as_content_text(Scanner *scanner, TSLexer *lexer,
   }
 }
 
-static bool parse_starting_at_opening_brace(TSLexer *lexer, Scanner *scanner,
-                                            BitValid valid_symbols) {
+static bool parse_starting_at_opening_brace(TSLexer *lexer, Scanner *scanner, BitValid valid_symbols) {
   lexer->log(lexer, "parse_starting_at_opening_brace");
 
   // we can tell if we're in choice conditions just by context, don't need to
   // parse further
-  if (bit_get(valid_symbols, CHOICE_CONDITION_OPEN) &&
-      scanner->in_choice_line) {
+  if (bit_get(valid_symbols, CHOICE_CONDITION_OPEN) && scanner->in_choice_line) {
     lexer->result_symbol = CHOICE_CONDITION_OPEN;
     scanner->in_choice_condition = true;
     advance(lexer, scanner);
@@ -369,22 +343,19 @@ static bool parse_starting_at_opening_brace(TSLexer *lexer, Scanner *scanner,
       print_bit_valid(lexer, sym_valid_lower);
 
       // DONE! figure out what we could be
-      if (bit_get(sym_valid_upper, INLINE_CONDITIONAL_OPEN) &&
-          bit_get(sym_valid_lower, INLINE_CONDITIONAL_OPEN)) {
+      if (bit_get(sym_valid_upper, INLINE_CONDITIONAL_OPEN) && bit_get(sym_valid_lower, INLINE_CONDITIONAL_OPEN)) {
         lexer->result_symbol = INLINE_CONDITIONAL_OPEN;
         scanner->inline_conditional_depth++;
         return true;
       }
 
-      if (bit_get(sym_valid_upper, SWITCH_CASE_OPEN) &&
-          bit_get(sym_valid_lower, SWITCH_CASE_OPEN)) {
+      if (bit_get(sym_valid_upper, SWITCH_CASE_OPEN) && bit_get(sym_valid_lower, SWITCH_CASE_OPEN)) {
         lexer->result_symbol = SWITCH_CASE_OPEN;
         scanner->switch_case_depth++;
         return true;
       }
 
-      if (bit_get(sym_valid_upper, INLINE_SEQUENCE_OPEN) &&
-          bit_get(sym_valid_lower, INLINE_SEQUENCE_OPEN)) {
+      if (bit_get(sym_valid_upper, INLINE_SEQUENCE_OPEN) && bit_get(sym_valid_lower, INLINE_SEQUENCE_OPEN)) {
         lexer->result_symbol = INLINE_SEQUENCE_OPEN;
         scanner->inline_sequence_depth++;
         return true;
@@ -458,8 +429,7 @@ static void reset_scanner_at_start_of_parse(TSLexer *lexer, Scanner *scanner) {
   scanner->chars_matched_this_parse = 0;
 }
 
-bool tree_sitter_ink_external_scanner_scan(void *payload, TSLexer *lexer,
-                                           const bool *_valid_symbols) {
+bool tree_sitter_ink_external_scanner_scan(void *payload, TSLexer *lexer, const bool *_valid_symbols) {
   BitValid valid_symbols = bit_init(_valid_symbols);
   Scanner *scanner = (Scanner *)payload;
   print_init_log(lexer, valid_symbols);
@@ -477,16 +447,14 @@ bool tree_sitter_ink_external_scanner_scan(void *payload, TSLexer *lexer,
     return false;
   }
 
-  if (bit_get(valid_symbols, CHOICE_BULLETS) && start_at_col_0 &&
-      (cursor(lexer) == '*' || cursor(lexer) == '+')) {
+  if (bit_get(valid_symbols, CHOICE_BULLETS) && start_at_col_0 && (cursor(lexer) == '*' || cursor(lexer) == '+')) {
     parse_as_choice_bullets(scanner, lexer);
     lexer->result_symbol = CHOICE_BULLETS;
     scanner->in_choice_line = true;
     return true;
   }
 
-  if (bit_get(valid_symbols, GATHER_BULLETS) && start_at_col_0 &&
-      (cursor(lexer) == '-')) {
+  if (bit_get(valid_symbols, GATHER_BULLETS) && start_at_col_0 && (cursor(lexer) == '-')) {
     parse_as_gather_bullets(scanner, lexer);
     if (scanner->chars_matched_this_parse == 0) {
       return false;
@@ -496,12 +464,9 @@ bool tree_sitter_ink_external_scanner_scan(void *payload, TSLexer *lexer,
     return true;
   }
 
-  if (cursor(lexer) == '{') {
-    return parse_starting_at_opening_brace(lexer, scanner, valid_symbols);
-  }
+  if (cursor(lexer) == '{') return parse_starting_at_opening_brace(lexer, scanner, valid_symbols);
 
-  if (bit_get(valid_symbols, INLINE_SEQUENCE_SEP) && cursor(lexer) == '|' &&
-      scanner->inline_sequence_depth) {
+  if (bit_get(valid_symbols, INLINE_SEQUENCE_SEP) && cursor(lexer) == '|' && scanner->inline_sequence_depth) {
     lexer->result_symbol = INLINE_SEQUENCE_SEP;
     advance(lexer, scanner);
     checkpoint(lexer, scanner);
@@ -512,22 +477,19 @@ bool tree_sitter_ink_external_scanner_scan(void *payload, TSLexer *lexer,
     return false;
   }
 
-  if (bit_get(valid_symbols, CONTENT_TEXT_DELIM_QUOTE) &&
-      parse_as_content_text(scanner, lexer, '"')) {
+  if (bit_get(valid_symbols, CONTENT_TEXT_DELIM_QUOTE) && parse_as_content_text(scanner, lexer, '"')) {
     if (scanner->chars_matched_this_parse == 0) return false;
     lexer->result_symbol = CONTENT_TEXT_DELIM_QUOTE;
     return true;
   }
 
-  if (bit_get(valid_symbols, CONTENT_TEXT_DELIM_PIPE) &&
-      parse_as_content_text(scanner, lexer, '|')) {
+  if (bit_get(valid_symbols, CONTENT_TEXT_DELIM_PIPE) && parse_as_content_text(scanner, lexer, '|')) {
     if (scanner->chars_matched_this_parse == 0) return false;
     lexer->result_symbol = CONTENT_TEXT_DELIM_PIPE;
     return true;
   }
 
-  if (bit_get(valid_symbols, CONTENT_TEXT) &&
-      parse_as_content_text(scanner, lexer, 0)) {
+  if (bit_get(valid_symbols, CONTENT_TEXT) && parse_as_content_text(scanner, lexer, 0)) {
     if (scanner->chars_matched_this_parse == 0) return false;
     lexer->result_symbol = CONTENT_TEXT;
     return true;

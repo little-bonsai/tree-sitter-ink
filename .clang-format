@@ -1,1 +1,2 @@
 AllowShortIfStatementsOnASingleLine: true
+ColumnLimit: 120
