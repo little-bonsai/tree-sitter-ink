@@ -204,16 +204,18 @@ static bool parse_as_gather_bullets(Scanner *scanner, TSLexer *lexer) {
 }
 
 static bool parse_as_content_text(Scanner *scanner, TSLexer *lexer, char delim) {
-  lexer->log(lexer, "parse_as_content_text");
+  lexer->log(lexer, "parse_as_content_text (delim = %d/'%lc')", delim, delim);
   lexer->log(lexer, "start at '%lc'", cursor(lexer));
-  if (match_str_now(lexer, scanner, "=")) return false; // stitch or knot
-  if (match_str_now(lexer, scanner, "~")) return false; // statement
-  if (match_str_now(lexer, scanner, "(")) return false; // label
-  if (match_str_now(lexer, scanner, "INCLUDE")) return false;
-  if (match_str_now(lexer, scanner, "VAR")) return false;
-  if (match_str_now(lexer, scanner, "CONST")) return false;
-  if (match_str_now(lexer, scanner, "LIST")) return false;
-  if (match_str_now(lexer, scanner, "EXTERNAL")) return false;
+  if (delim == 0) {
+    if (match_str_now(lexer, scanner, "=")) return false; // stitch or knot
+    if (match_str_now(lexer, scanner, "~")) return false; // statement
+    if (match_str_now(lexer, scanner, "(")) return false; // label
+    if (match_str_now(lexer, scanner, "INCLUDE")) return false;
+    if (match_str_now(lexer, scanner, "VAR")) return false;
+    if (match_str_now(lexer, scanner, "CONST")) return false;
+    if (match_str_now(lexer, scanner, "LIST")) return false;
+    if (match_str_now(lexer, scanner, "EXTERNAL")) return false;
+  }
 
   for (;;) {
 

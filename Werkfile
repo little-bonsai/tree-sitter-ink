@@ -23,6 +23,11 @@ task test {
   run "tree-sitter test --show-fields"
 }
 
+task test-example {
+  build "src/grammar.json"
+  run "tree-sitter parse --debug example.ink"
+}
+
 task test-outline {
   build "src/grammar.json"
   run "tree-sitter test --show-fields --overview-only"

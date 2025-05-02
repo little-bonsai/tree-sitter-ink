@@ -186,3 +186,16 @@ CONST HASTINGS = "Hastings"
     (identifier)
     (string
       (contentText))))
+
+===
+StringContainingBrackets
+===
+~ stage = "()"
+
+---
+
+(file
+  (statement
+    (identifier)
+    (string
+      (contentText))))
