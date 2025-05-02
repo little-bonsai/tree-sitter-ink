@@ -587,6 +587,10 @@
         "required": false,
         "types": [
           {
+            "type": "divert",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           },
@@ -1416,6 +1420,10 @@
         "multiple": true,
         "required": false,
         "types": [
+          {
+            "type": "divert",
+            "named": true
+          },
           {
             "type": "identifier",
             "named": true

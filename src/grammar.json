@@ -156,25 +156,8 @@
                           "type": "FIELD",
                           "name": "parameter",
                           "content": {
-                            "type": "SEQ",
-                            "members": [
-                              {
-                                "type": "CHOICE",
-                                "members": [
-                                  {
-                                    "type": "STRING",
-                                    "value": "ref"
-                                  },
-                                  {
-                                    "type": "BLANK"
-                                  }
-                                ]
-                              },
-                              {
-                                "type": "SYMBOL",
-                                "name": "identifier"
-                              }
-                            ]
+                            "type": "SYMBOL",
+                            "name": "_parameter"
                           }
                         },
                         {
@@ -190,25 +173,8 @@
                                 "type": "FIELD",
                                 "name": "parameter",
                                 "content": {
-                                  "type": "SEQ",
-                                  "members": [
-                                    {
-                                      "type": "CHOICE",
-                                      "members": [
-                                        {
-                                          "type": "STRING",
-                                          "value": "ref"
-                                        },
-                                        {
-                                          "type": "BLANK"
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "type": "SYMBOL",
-                                      "name": "identifier"
-                                    }
-                                  ]
+                                  "type": "SYMBOL",
+                                  "name": "_parameter"
                                 }
                               }
                             ]
@@ -273,25 +239,8 @@
                           "type": "FIELD",
                           "name": "parameter",
                           "content": {
-                            "type": "SEQ",
-                            "members": [
-                              {
-                                "type": "CHOICE",
-                                "members": [
-                                  {
-                                    "type": "STRING",
-                                    "value": "ref"
-                                  },
-                                  {
-                                    "type": "BLANK"
-                                  }
-                                ]
-                              },
-                              {
-                                "type": "SYMBOL",
-                                "name": "identifier"
-                              }
-                            ]
+                            "type": "SYMBOL",
+                            "name": "_parameter"
                           }
                         },
                         {
@@ -307,25 +256,8 @@
                                 "type": "FIELD",
                                 "name": "parameter",
                                 "content": {
-                                  "type": "SEQ",
-                                  "members": [
-                                    {
-                                      "type": "CHOICE",
-                                      "members": [
-                                        {
-                                          "type": "STRING",
-                                          "value": "ref"
-                                        },
-                                        {
-                                          "type": "BLANK"
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "type": "SYMBOL",
-                                      "name": "identifier"
-                                    }
-                                  ]
+                                  "type": "SYMBOL",
+                                  "name": "_parameter"
                                 }
                               }
                             ]
@@ -3567,6 +3499,32 @@
         {
           "type": "SYMBOL",
           "name": "identifier"
+        }
+      ]
+    },
+    "_parameter": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "ref"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "identifier"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "divert"
         }
       ]
     }

@@ -56,3 +56,22 @@ EXTERNAL foo(a,b)
     name: (identifier)
     parameter: (identifier)
     parameter: (identifier)))
+
+===
+DivertsAsArguments
+===
+=== a(-> b) ===
+    c
+    foo
+
+---
+
+(file
+  (knot
+    (knotHeader
+      name: (identifier)
+      parameter: (divert
+        to: (path
+          (identifier))))
+    (contentText)
+    (contentText)))

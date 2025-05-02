@@ -88,7 +88,7 @@ module.exports = grammar({
         /===+/,
         optional("function"),
         field("name", $.identifier),
-        optional(seq("(", optional(interleave(field("parameter", seq(optional("ref"), $.identifier)), ",")), ")")),
+        optional(seq("(", optional(interleave(field("parameter", $._parameter), ",")), ")")),
         /===+\n/,
       ),
 
@@ -96,7 +96,7 @@ module.exports = grammar({
       seq(
         "EXTERNAL",
         field("name", $.identifier),
-        optional(seq("(", optional(interleave(field("parameter", seq(optional("ref"), $.identifier)), ",")), ")")),
+        optional(seq("(", optional(interleave(field("parameter", $._parameter), ",")), ")")),
       ),
 
     stitch: ($) => seq($.stitchHeader, repeat1($._stitchBody)),
@@ -233,5 +233,6 @@ module.exports = grammar({
     string: ($) => seq('"', optional($._mixedTextQuote), '"'),
     identifier: () => /\w[\w\d]*/,
     identifierNamespaced: ($) => seq(field("namespace", $.identifier), ".", $.identifier),
+    _parameter: ($) => choice($.identifier, seq("ref", $.identifier), $.divert),
   },
 });
