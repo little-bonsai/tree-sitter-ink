@@ -10,7 +10,12 @@
   },
   "main": "bindings/node",
   "types": "bindings/node",
-  "keywords": ["incremental", "parsing", "tree-sitter", "ink"],
+  "keywords": [
+    "incremental",
+    "parsing",
+    "tree-sitter",
+    "ink"
+  ],
   "files": [
     "grammar.js",
     "tree-sitter.json",
@@ -26,8 +31,7 @@
     "node-gyp-build": "^4.8.2"
   },
   "devDependencies": {
-    "prebuildify": "^6.0.1",
-    "tree-sitter-cli": "^0.24.7"
+    "prebuildify": "^6.0.1"
   },
   "peerDependencies": {
     "tree-sitter": "^0.21.1"
