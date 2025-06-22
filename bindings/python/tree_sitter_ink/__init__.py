@@ -1,4 +1,4 @@
-"""Ink interactive fiction language"""
+"""werk"""
 
 from importlib.resources import files as _files
 

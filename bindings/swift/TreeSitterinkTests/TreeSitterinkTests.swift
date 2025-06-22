@@ -1,12 +1,12 @@
 import XCTest
 import SwiftTreeSitter
-import TreeSitterink
+import TreeSitterInk
 
-final class TreeSitterinkTests: XCTestCase {
+final class TreeSitterInkTests: XCTestCase {
     func testCanLoadGrammar() throws {
         let parser = Parser()
         let language = Language(language: tree_sitter_ink())
         XCTAssertNoThrow(try parser.setLanguage(language),
-                         "Error loading ink grammar")
+                         "Error loading Ink grammar")
     }
 }

@@ -10,6 +10,6 @@ import (
 func TestCanLoadGrammar(t *testing.T) {
 	language := tree_sitter.NewLanguage(tree_sitter_ink.Language())
 	if language == nil {
-		t.Errorf("Error loading ink grammar")
+		t.Errorf("Error loading Ink grammar")
 	}
 }
