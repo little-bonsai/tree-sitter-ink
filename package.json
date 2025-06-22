@@ -1,5 +1,5 @@
 {
-  "name": "tree-sitter-ink",
+  "name": "tree-sitter-ink-lbz",
   "version": "0.0.0",
   "description": "Ink interactive fiction language",
   "repository": "https://github.com/tree-sitter/tree-sitter-ink",
@@ -10,12 +10,7 @@
   },
   "main": "bindings/node",
   "types": "bindings/node",
-  "keywords": [
-    "incremental",
-    "parsing",
-    "tree-sitter",
-    "ink"
-  ],
+  "keywords": ["incremental", "parsing", "tree-sitter", "ink"],
   "files": [
     "grammar.js",
     "tree-sitter.json",
