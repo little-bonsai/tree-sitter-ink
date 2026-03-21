@@ -73,6 +73,32 @@ ElseIfConditions
       (number))))
 
 ===
+GatherAfterSwitchCase
+===
+=== test ===
+{ x > 0:
+	~ y = x - 1
+}
+- gather text
+
+---
+
+(file
+  (knot
+    (knotHeader
+      name: (identifier))
+    (switchCase
+      over: (identifier)
+      over: (number)
+      then: (statement
+        (identifier)
+        (identifier)
+        (number)))
+    (gather
+      (gatherBullets)
+      text: (contentText))))
+
+===
 SwitchBlocks
 ===
 { x:

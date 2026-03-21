@@ -2106,7 +2106,12 @@
           ]
         },
         {
-          "type": "STRING",
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_switchCaseClose"
+          },
+          "named": false,
           "value": "}"
         }
       ]
@@ -3617,6 +3622,10 @@
     {
       "type": "SYMBOL",
       "name": "_inlineSequenceSep"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_switchCaseClose"
     }
   ],
   "inline": [],

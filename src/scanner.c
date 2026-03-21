@@ -24,6 +24,7 @@ enum TokenType {
 
   INLINE_SEQUENCE_OPEN,
   INLINE_SEQUENCE_SEP,
+  SWITCH_CASE_CLOSE,
 
   TOKEN_TYPE_COUNT
 };
@@ -396,6 +397,14 @@ bool tree_sitter_ink_external_scanner_scan(void *payload, TSLexer *lexer, const 
   if (cursor((lexer)) == '\n') {
     scanner->in_choice_line = false;
     return false;
+  }
+
+  if (bit_get(valid_symbols, SWITCH_CASE_CLOSE) && cursor(lexer) == '}' && scanner->switch_case_depth) {
+    advance(lexer, scanner);
+    checkpoint(lexer, scanner);
+    scanner->switch_case_depth--;
+    lexer->result_symbol = SWITCH_CASE_CLOSE;
+    return true;
   }
 
   if (bit_get(valid_symbols, CHOICE_BULLETS) && start_at_col_0 && (cursor(lexer) == '*' || cursor(lexer) == '+')) {

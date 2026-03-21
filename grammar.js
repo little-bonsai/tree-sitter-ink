@@ -60,6 +60,7 @@ module.exports = grammar({
     $._switchCaseOpen,
     $._inlineSequenceOpen,
     $._inlineSequenceSep,
+    $._switchCaseClose,
   ],
 
   conflicts: ($) => [
@@ -157,7 +158,7 @@ module.exports = grammar({
         field("over", optional($._switchCaseOver)),
         repeat(seq("-", field("condition", $._expression), ":", field("body", repeat1($._stitchBody)))),
         optional(seq("-", "else", ":", field("body", repeat1($._stitchBody)))),
-        "}",
+        alias($._switchCaseClose, "}"),
       ),
     _switchCaseOver: ($) => seq($._expression, ":", field("then", optional(repeat($._stitchBody)))),
 
