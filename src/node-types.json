@@ -879,6 +879,10 @@
             "named": true
           },
           {
+            "type": "switchCase",
+            "named": true
+          },
+          {
             "type": "tag",
             "named": true
           },

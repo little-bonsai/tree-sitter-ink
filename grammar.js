@@ -149,7 +149,11 @@ module.exports = grammar({
       ),
 
     gather: ($) =>
-      seq($.gatherBullets, optional(field("label", seq("(", $.path, ")", /\s*/))), field("text", $._lineOfMixedText)),
+      seq(
+        $.gatherBullets,
+        optional(field("label", seq("(", $.path, ")", /\s*/))),
+        field("text", choice($._lineOfMixedText, $.switchCase)),
+      ),
 
     switchCase: ($) =>
       seq(

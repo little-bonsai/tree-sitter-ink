@@ -1993,8 +1993,17 @@
           "type": "FIELD",
           "name": "text",
           "content": {
-            "type": "SYMBOL",
-            "name": "_lineOfMixedText"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_lineOfMixedText"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "switchCase"
+              }
+            ]
           }
         }
       ]

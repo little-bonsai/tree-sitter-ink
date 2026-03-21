@@ -99,6 +99,32 @@ GatherAfterSwitchCase
       text: (contentText))))
 
 ===
+GatherWithInlineSwitchCase
+===
+=== test ===
+* a
+- { teacup:
+	~ drugged = true
+}
+
+---
+
+(file
+  (knot
+    (knotHeader
+      name: (identifier))
+    (choice
+      (choiceBullets)
+      postSupression: (contentText))
+    (gather
+      (gatherBullets)
+      text: (switchCase
+        over: (identifier)
+        then: (statement
+          (identifier)
+          (identifier))))))
+
+===
 SwitchBlocks
 ===
 { x:
