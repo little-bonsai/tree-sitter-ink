@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-ink-lbz",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Ink interactive fiction grammar for tree-sitter",
   "repository": {
     "type": "git",
