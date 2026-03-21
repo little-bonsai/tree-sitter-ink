@@ -1,4 +1,4 @@
-module github.com/tree-sitter/tree-sitter-ink
+module github.com/little-bonsai/tree-sitter-ink
 
 go 1.22
 

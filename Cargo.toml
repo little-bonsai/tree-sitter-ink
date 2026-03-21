@@ -1,9 +1,9 @@
 [package]
 name = "tree-sitter-ink-lbz"
-description = "Tree Sitter Grammar for Ink"
+description = "Ink interactive fiction grammar for tree-sitter"
 version = "0.0.1"
 authors = ["Freddie Gilbraith <freddie.gilbraith@littlebonsai.co.uk>"]
-license = "Apache-2.0"
+license = "MIT"
 readme = "README.md"
 keywords = ["incremental", "parsing", "tree-sitter", "ink"]
 categories = ["parser-implementations", "parsing", "text-editors"]
@@ -31,4 +31,4 @@ tree-sitter-language = "0.1"
 cc = "1.2"
 
 [dev-dependencies]
-tree-sitter = "0.25.6"
+tree-sitter = "0.25"

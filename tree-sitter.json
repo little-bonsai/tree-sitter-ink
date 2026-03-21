@@ -2,23 +2,29 @@
   "grammars": [
     {
       "name": "ink",
-      "camelcase": "ink",
+      "camelcase": "Ink",
       "scope": "source.ink",
-      "file-types": ["ink"],
-      "injection-regex": "^ink$",
-      "highlights": "queries/ink/highlights.scm"
+      "path": ".",
+      "file-types": [
+        "ink"
+      ],
+      "highlights": "queries/highlights.scm",
+      "injection-regex": "^ink$"
     }
   ],
   "metadata": {
-    "version": "0.0.0",
+    "version": "0.0.1",
     "license": "MIT",
-    "description": "werk",
+    "description": "Ink interactive fiction grammar for tree-sitter",
     "authors": [
       {
         "name": "Freddie Gilbraith",
         "email": "freddie.gilbraith@littlebonsai.co.uk"
       }
-    ]
+    ],
+    "links": {
+      "repository": "https://github.com/little-bonsai/tree-sitter-ink"
+    }
   },
   "bindings": {
     "c": true,
