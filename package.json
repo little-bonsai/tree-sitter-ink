@@ -1,8 +1,11 @@
 {
   "name": "tree-sitter-ink-lbz",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Ink interactive fiction grammar for tree-sitter",
-  "repository": "https://github.com/little-bonsai/tree-sitter-ink",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/little-bonsai/tree-sitter-ink.git"
+  },
   "license": "MIT",
   "author": {
     "name": "Freddie Gilbraith",
