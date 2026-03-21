@@ -89,7 +89,7 @@ module.exports = grammar({
         optional("function"),
         field("name", $.identifier),
         optional(seq("(", optional(interleave(field("parameter", $._parameter), ",")), ")")),
-        /===+\n/,
+        /===+[ \t]*\n/,
       ),
 
     externalFunction: ($) =>

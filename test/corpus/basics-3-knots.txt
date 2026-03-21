@@ -85,6 +85,20 @@ Functions
         (identifier)))))
 
 ===
+KnotHeaderTrailingWhitespace
+===
+=== Foo === 
+some text
+
+---
+
+(file
+  (knot
+    (knotHeader
+      name: (identifier))
+    (contentText)))
+
+===
 PassByReference
 ===
 === function alter(ref x, k) ===
