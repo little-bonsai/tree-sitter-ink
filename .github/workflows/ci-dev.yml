@@ -76,8 +76,12 @@ jobs:
         uses: tree-sitter/setup-action/cli@v2
       - name: Generate parser
         run: tree-sitter generate
+      - name: Check for dirty files after generate
+        run: |
+          git diff --stat
+          git diff src/parser.c | head -80
       - name: Dry-run publish to crates.io
-        run: cargo publish --dry-run
+        run: cargo publish --dry-run --allow-dirty
 
   build_npm_wasm:
     name: Build Wasm binaries (npm)
