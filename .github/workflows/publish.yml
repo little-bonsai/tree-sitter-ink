@@ -10,6 +10,13 @@ permissions:
   attestations: write
 
 jobs:
+  crates:
+    uses: tree-sitter/workflows/.github/workflows/package-crates.yml@main
+    secrets:
+      CARGO_REGISTRY_TOKEN: ${{secrets.CARGO_REGISTRY_TOKEN}}
+    with:
+      generate: true
+
   github:
     uses: tree-sitter/workflows/.github/workflows/release.yml@main
     with:
@@ -19,12 +26,5 @@ jobs:
     uses: tree-sitter/workflows/.github/workflows/package-npm.yml@main
     secrets:
       NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-    with:
-      generate: true
-
-  crates:
-    uses: tree-sitter/workflows/.github/workflows/package-crates.yml@main
-    secrets:
-      CARGO_REGISTRY_TOKEN: ${{secrets.CARGO_REGISTRY_TOKEN}}
     with:
       generate: true
