@@ -52,7 +52,6 @@ zig-out/
 # Project-specific
 log.html
 parse.log
-binding.gyp
 .werk-cache
 .env
 samples/
