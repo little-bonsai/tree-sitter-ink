@@ -3493,7 +3493,7 @@
     },
     "identifier": {
       "type": "PATTERN",
-      "value": "\\w[\\w\\d]*"
+      "value": "[\\p{L}_][\\p{L}\\p{Nd}_]*"
     },
     "identifierNamespaced": {
       "type": "SEQ",

@@ -1,0 +1,49 @@
+===
+UnicodeVariableName
+===
+VAR café = 1
+
+---
+
+(file
+  (variableDef
+    (identifier)
+    (number)))
+
+===
+UnicodeKnotName
+===
+=== møte ===
+    hello
+
+---
+
+(file
+  (knot
+    (knotHeader
+      name: (identifier))
+    (contentText)))
+
+===
+UnicodeFunctionCall
+===
+{ перевод() }
+
+---
+
+(file
+  (interpolation
+    (functionCall
+      (identifier))))
+
+===
+UnicodeInDivert
+===
+-> はじめ
+
+---
+
+(file
+  (divert
+    to: (path
+      (identifier))))

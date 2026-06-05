@@ -236,7 +236,7 @@ module.exports = grammar({
     tag: ($) => seq("#", $._mixedText),
     number: () => /\d+(\.\d+)?/,
     string: ($) => seq('"', optional($._mixedTextQuote), '"'),
-    identifier: () => /\w[\w\d]*/,
+    identifier: () => /[\p{L}_][\p{L}\p{Nd}_]*/,
     identifierNamespaced: ($) => seq(field("namespace", $.identifier), ".", $.identifier),
     _parameter: ($) => choice($.identifier, seq("ref", $.identifier), $.divert),
   },
